@@ -1,0 +1,468 @@
+{{include 'layout.html'}}
+{{ if contracte:}}
+    <table id="lista contracte">
+        <tr>
+            <th>User</th>
+            <th>Contract</th>
+            <th>Auto</th>
+            <th>Numar Auto</th>
+            <th>Data Adaugare</th>
+            <th>User</th>
+            <th>Programare</th>
+            <th>Contactat</th>
+            <th>Consilier</th>
+            <th>Finalizat</th>
+            <th>User Finalizare</th>
+            <th>Motiv</th>
+            <th>Observatii</th>
+        </tr>
+    
+        {{ 
+            li = {} 
+            co = {}
+            old_l = {}
+            old_c = {}
+        }}
+        {{ for con in contracte:}}
+            {{ if con.tabel.lower() == 'contracte':}}
+                {{
+                   try:
+                       co = eval(con.detalii)
+                   except:
+                       co = {}
+                       pass
+                }}
+               <tr>
+                   {{=TD(con.username)}}
+                   {{if co.get('contract', False):}}                            
+                       {{=TD(co['contract'], _class='red' if co['contract'] == old_c.get('contract') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('auto', False):}}                            
+                       {{=TD(co['auto'], _class='red' if co['auto'] == old_c.get('auto') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('numar_auto', False):}}                            
+                       {{=TD(co['numar_auto'], _class='red' if co['numar_auto'] == old_c.get('numar_auto') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('date_added', False):}}                            
+                       {{=TD(co['date_added'], _class='red' if co['date_added'] == old_c.get('date_added') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('user_id', False):}}                            
+                       {{=TD(co['user_id'], _class='red' if co['user_id'] == old_c.get('user_id') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('programare', False):}}                            
+                       {{=TD(co['programare'], _class='red' if co['programare'] == old_c.get('programare') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('contactat', False):}}                            
+                       {{=TD(co['contactat'], _class='red' if co['contactat'] == old_c.get('contactat') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('consilier_id', False):}}                            
+                       {{=TD(co['consilier_id'], _class='red' if co['consilier_id'] == old_c.get('consilier_id') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('finalizat', False):}}                            
+                       {{=TD(co['finalizat'], _class='red' if co['finalizat'] == old_c.get('finalizat') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('user_finalizare', False):}}                            
+                       {{=TD(co['user_finalizare'], _class='red' if co['user_finalizare'] == old_c.get('user_finalizare') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('motiv', False):}}                            
+                       {{=TD(co['motiv'], _class='red' if co['motiv'] == old_c.get('motiv') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+                   
+                   {{if co.get('observatii', False):}}                            
+                       {{=TD(co['observatii'], _class='red' if co['observatii'] == old_c.get('observatii') else 'green')}}
+                   {{ else: }}
+                       {{=TD()}}
+                   {{ pass }}
+               </tr>
+               {{ 
+                    from copy import deepcopy
+                    old_c = deepcopy(co)
+                }} 
+            {{elif con.tabel.lower() == 'linii':}}
+            <tr>
+                <td colspan="13">
+                 {{
+                   try:
+                       li = eval(con.detalii)
+                   except:
+                       li = {}
+                       pass
+                }}    
+                {{ if li.get('insert',False):}}
+                
+                    <table id="insert" style="background: #FFF">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Data Adaugare</th>
+                            <th>Comanda</th>
+                            <th>Denumire</th>
+                            <th>OE AM</th>
+                            <th>Asigurator</th>
+                            <th>Cantitate</th>
+                            <th>Consilier</th>
+                            <th>Data Edit</th>
+                            <th>Furnizor</th>
+                            <th>Termen</th>
+                            <th>Cod</th>
+                            <th>Cod Cross</th>
+                            <th>Pret Ach.</th>
+                            <th>Pret Vanz.</th>
+                            <th>Cantitate in</th>
+                            <th>User Receptie</th>
+                            <th>Data Receptie</th>
+                            <th>Stare</th>
+                            <th>Sters</th>
+                            <th>Locatie</th>
+                            <th>Ascuns</th>
+                        </tr>
+                        {{ for l in li['insert']:}}
+                            <tr>
+                               {{if l.get('user_id', False):}}                            
+                                   {{=TD(l['user_id'], _class='red' if l['user_id'] == old_l.get('user_id') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('date_added', False):}}                            
+                                   {{=TD(l['date_added'], _class='red' if l['date_added'] == old_l.get('date_added') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('comanda', False):}}                            
+                                   {{=TD(l['comanda'], _class='red' if l['comanda'] == old_l.get('comanda') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('denumire', False):}}                            
+                                   {{=TD(l['denumire'], _class='red' if l['denumire'] == old_l.get('denumire') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('oe_am', False):}}                            
+                                   {{=TD(l['oe_am'], _class='red' if l['oe_am'] == old_l.get('oe_am') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('asigurator', False):}}                            
+                                   {{=TD(l['asigurator'], _class='red' if l['asigurator'] == old_l.get('asigurator') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('cantitate', False):}}                            
+                                   {{=TD(l['cantitate'], _class='red' if l['cantitate'] == old_l.get('cantitate') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('consilier_id', False):}}                            
+                                   {{=TD(l['consilier_id'], _class='red' if l['consilier_id'] == old_l.get('consilier_id') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('data_edit', False):}}                            
+                                   {{=TD(l['data_edit'], _class='red' if l['data_edit'] == old_l.get('data_edit') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('furnizor', False):}}                            
+                                   {{=TD(l['furnizor'], _class='red' if l['furnizor'] == old_l.get('furnizor') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('termen', False):}}                            
+                                   {{=TD(l['termen'], _class='red' if l['termen'] == old_l.get('termen') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('cod', False):}}                            
+                                   {{=TD(l['cod'], _class='red' if l['cod'] == old_l.get('cod') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('cod_cross', False):}}                            
+                                   {{=TD(l['cod_cross'], _class='red' if l['cod_cross'] == old_l.get('cod_cross') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('pret_achizitie', False):}}                            
+                                   {{=TD(l['pret_achizitie'], _class='red' if l['pret_achizitie'] == old_l.get('pret_achizitie') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('pret_vanzare', False):}}                            
+                                   {{=TD(l['pret_vanzare'], _class='red' if l['pret_vanzare'] == old_l.get('pret_vanzare') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('cantitate_in', False):}}                            
+                                   {{=TD(l['cantitate_in'], _class='red' if l['cantitate_in'] == old_l.get('cantitate_in') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('user_receptie', False):}}                            
+                                   {{=TD(l['user_receptie'], _class='red' if l['user_receptie'] == old_l.get('user_receptie') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('data_receptie', False):}}                            
+                                   {{=TD(l['data_receptie'], _class='red' if l['data_receptie'] == old_l.get('data_receptie') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('stare', False):}}                            
+                                   {{=TD(l['stare'], _class='red' if l['stare'] == old_l.get('stare') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('sters', False):}}                            
+                                   {{=TD(l['sters'], _class='red' if l['sters'] == old_l.get('sters') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('locatie', False):}}                            
+                                   {{=TD(l['locatie'], _class='red' if l['locatie'] == old_l.get('locatie') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('ascuns', False):}}                            
+                                   {{=TD(l['ascuns'], _class='red' if l['ascuns'] == old_l.get('ascuns') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                            </tr>
+                        {{pass}}
+                    </table>
+                {{ pass }}
+                
+                {{ if li.get('update',False):}}
+                    <table id="update" style="background: #EEE">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Data Adaugare</th>
+                            <th>Comanda</th>
+                            <th>Denumire</th>
+                            <th>OE AM</th>
+                            <th>Asigurator</th>
+                            <th>Cantitate</th>
+                            <th>Consilier</th>
+                            <th>Data Edit</th>
+                            <th>Furnizor</th>
+                            <th>Termen</th>
+                            <th>Cod</th>
+                            <th>Cod Cross</th>
+                            <th>Pret Ach.</th>
+                            <th>Pret Vanz.</th>
+                            <th>Cantitate in</th>
+                            <th>User Receptie</th>
+                            <th>Data Receptie</th>
+                            <th>Stare</th>
+                            <th>Sters</th>
+                            <th>Locatie</th>
+                            <th>Ascuns</th>
+                        </tr>
+                        {{ for l in li['update']:}}
+                            <tr>
+                               {{if l.get('user_id', False):}}                            
+                                   {{=TD(l['user_id'], _class='red' if l['user_id'] == old_l.get('user_id') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('date_added', False):}}                            
+                                   {{=TD(l['date_added'], _class='red' if l['date_added'] == old_l.get('date_added') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('comanda', False):}}                            
+                                   {{=TD(l['comanda'], _class='red' if l['comanda'] == old_l.get('comanda') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('denumire', False):}}                            
+                                   {{=TD(l['denumire'], _class='red' if l['denumire'] == old_l.get('denumire') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('oe_am', False):}}                            
+                                   {{=TD(l['oe_am'], _class='red' if l['oe_am'] == old_l.get('oe_am') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('asigurator', False):}}                            
+                                   {{=TD(l['asigurator'], _class='red' if l['asigurator'] == old_l.get('asigurator') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('cantitate', False):}}                            
+                                   {{=TD(l['cantitate'], _class='red' if l['cantitate'] == old_l.get('cantitate') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('consilier_id', False):}}                            
+                                   {{=TD(l['consilier_id'], _class='red' if l['consilier_id'] == old_l.get('consilier_id') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('data_edit', False):}}                            
+                                   {{=TD(l['data_edit'], _class='red' if l['data_edit'] == old_l.get('data_edit') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('furnizor', False):}}                            
+                                   {{=TD(l['furnizor'], _class='red' if l['furnizor'] == old_l.get('furnizor') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('termen', False):}}                            
+                                   {{=TD(l['termen'], _class='red' if l['termen'] == old_l.get('termen') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('cod', False):}}                            
+                                   {{=TD(l['cod'], _class='red' if l['cod'] == old_l.get('cod') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('cod_cross', False):}}                            
+                                   {{=TD(l['cod_cross'], _class='red' if l['cod_cross'] == old_l.get('cod_cross') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('pret_achizitie', False):}}                            
+                                   {{=TD(l['pret_achizitie'], _class='red' if l['pret_achizitie'] == old_l.get('pret_achizitie') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('pret_vanzare', False):}}                            
+                                   {{=TD(l['pret_vanzare'], _class='red' if l['pret_vanzare'] == old_l.get('pret_vanzare') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('cantitate_in', False):}}                            
+                                   {{=TD(l['cantitate_in'], _class='red' if l['cantitate_in'] == old_l.get('cantitate_in') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('user_receptie', False):}}                            
+                                   {{=TD(l['user_receptie'], _class='red' if l['user_receptie'] == old_l.get('user_receptie') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('data_receptie', False):}}                            
+                                   {{=TD(l['data_receptie'], _class='red' if l['data_receptie'] == old_l.get('data_receptie') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('stare', False):}}                            
+                                   {{=TD(l['stare'], _class='red' if l['stare'] == old_l.get('stare') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('sters', False):}}                            
+                                   {{=TD(l['sters'], _class='red' if l['sters'] == old_l.get('sters') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('locatie', False):}}                            
+                                   {{=TD(l['locatie'], _class='red' if l['locatie'] == old_l.get('locatie') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                               
+                               {{if l.get('ascuns', False):}}                            
+                                   {{=TD(l['ascuns'], _class='red' if l['ascuns'] == old_l.get('ascuns') else 'green')}}
+                               {{ else: }}
+                                   {{=TD()}}
+                               {{ pass }}
+                            </tr>
+                        {{pass}}
+                    </table>
+                    </td>
+                </tr>
+                {{ pass }}
+                
+                
+               {{ 
+                   #log(li)
+                   #log(old_l)
+                    from copy import deepcopy
+                    old_l = deepcopy(li)
+                }}    
+            {{pass}}  
+        {{pass}}
+    </table>
+{{pass}}
+
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
+
+{{#=BEAUTIFY(response._vars)}}

@@ -1,0 +1,50 @@
+{{extend 'layout.html'}}
+{{if not(luna):}}
+    {{=DIV('Nu exista Raport', _class='warning')}}
+{{else:}}
+    <table>
+        {{=THEAD(TR(
+            TH(),
+            TH('Tip Factura'),
+            TH('Total'),
+            TH('Puncte Folosite'),
+            TH('Puncte Primite'),
+            TH('Discount Total'),
+        ))}}
+        <tody>
+        {{
+            total =0 
+            PF = 0 
+            PA = 0 
+            DT = 0
+        }}
+        {{ for i,tip in enumerate(luna):}}
+            {{
+                total += tip['Total'] 
+                PF  += tip['PuncteFolosite']
+                PA += tip['PuncteAcordate']
+                DT += tip['Discount']
+            }}
+            {{=TR(
+                TD(i+1),
+                TD(tip['tip_factura']),
+                TD('{0:.2f}'.format(tip['Total']), _class='number'),
+                TD(tip['PuncteFolosite'], _class='number'),
+                TD(tip['PuncteAcordate'], _class='number'),
+                TD('{0:.2f}'.format(tip['Discount']), _class='number'),
+            )}}
+        {{pass}}
+        {{=TR(
+            TH(),
+            TH(),
+            TH('{0:.2f}'.format(total), _class='number'),
+            TH(PF, _class='number'),
+            TH(PA, _class='number'),
+            TH('{0:.2f}'.format(DT), _class='number'),
+            _class="total"
+        )}}
+        </tbody>
+    </table>
+    {{=H3('Data ', SPAN(_id='curent_date'), INPUT(_type='text', _id='date', _value='{0}'.format(request.now.strftime('%Y-%m-%d')), _onchange='getFacturi(this.value)'))}}
+    {{=DIV(_id='for_table')}}
+{{pass}}

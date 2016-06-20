@@ -1,0 +1,157 @@
+#user_logs #users {
+    list-style-type: none;
+    text-indent: 0;
+    margin: 0;
+    padding: 10px 0 0;
+    clear: both;
+}
+#user_logs #users li a {
+    display: block;
+    float: left;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    width: 85px;
+    background-color: lightgray;
+
+    margin: 1px 1px 0 0;
+     border: 1px solid;
+    -moz-border-radius: 9px 9px 9px 9px;
+    -webkit-border-radius: 9px 9px 9px 9px;
+    -o-border-radius: 9px 9px 9px 9px;
+    border-radius: 9px 9px 9px 9px;
+
+}
+#user_logs #users li a:hover {
+    background-color: darkgrey;
+}
+
+#user_logs #tables {
+    list-style-type: none;
+    text-indent: 0;
+    margin: 0;
+    padding: 10px 0 0;
+    clear: both;
+}
+#user_logs #tables li a {
+    display: block;
+    float: left;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    width: 125px;
+    background-color: lightgray;
+
+     margin: 1px 1px 0 0;
+     border: 1px solid;
+    -moz-border-radius: 9px 9px 9px 9px;
+    -webkit-border-radius: 9px 9px 9px 9px;
+    -o-border-radius: 9px 9px 9px 9px;
+    border-radius: 9px 9px 9px 9px;
+}
+#user_logs #tables li a:hover {
+    background-color: darkgrey;
+}
+
+#user_logs #dates {
+    list-style-type: none;
+    text-indent: 0;
+    margin: 0;
+    padding: 10px 0 0;
+    clear: both;
+}
+#user_logs #dates li a {
+    display: block;
+    float: left;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    width: 85px;
+    background-color: lightgray;
+
+     margin: 1px 1px 0 0;
+     border: 1px solid;
+    -moz-border-radius: 9px 9px 9px 9px;
+    -webkit-border-radius: 9px 9px 9px 9px;
+    -o-border-radius: 9px 9px 9px 9px;
+    border-radius: 9px 9px 9px 9px;
+}
+#user_logs #dates li a:hover {
+    background-color: darkgrey;
+}
+#user_logs #logs {
+    clear: both;
+    margin: 25px auto;
+}
+#user_logs #logs thead tr {
+
+}
+#user_logs #logs thead th {
+
+}
+#user_logs #logs tbody tr {
+
+}
+#user_logs #logs tbody td {
+    
+}
+#user_logs #logs .mw-350 {
+    max-width: 400px;
+}
+#user_logs #logs .more {
+    display: none;
+    font-style: normal;
+}
+#user_logs #logs .new_,
+#user_logs #logs .old_ {
+    font-style: normal
+}
+
+#user_logs #logs .new_changed {
+    color: green;
+}
+
+#user_logs #logs .old_changed {
+    color: red;
+}
+#user_logs #show_all {
+
+}
+
+.number {
+	text-align: right;
+}
+
+#date,
+#date_useri {
+	width: 1px;
+	height: 1px;
+	border: 0 none;
+}
+
+#date:focus {
+	border: 0 none;
+	background: none;
+}
+
+.ui-datepicker-trigger {
+	margin: 30px 0 -20px;
+}
+
+#for_table {
+	margin-top: 15px;
+}
+
+.warning {
+	background: url("/welcome/static/images/warn.png") no-repeat scroll 5px center #FEFE99;
+    border-bottom: 1px solid #DADA59;
+    border-top: 1px solid #DADA59;
+    padding: 5px 0;
+    text-indent: 28px;
+	font-weight: bold;
+	font-family: Arial,sans-serif
+}
+
+.total {
+	border-top: 1px solid black;
+}

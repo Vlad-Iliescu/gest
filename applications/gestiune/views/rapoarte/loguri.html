@@ -1,0 +1,94 @@
+{{extend 'layout.html'}}
+<div id="user_logs">
+    {{if not(users):}}
+        {{=DIV('Nu exista loguri', _class='warning')}}
+    {{else:}}
+        <ul id="users">
+            {{=LI(A('Toti', _href=URL('loguri')))}}
+            {{ for user in users:}}
+                {{=LI(A(user.username, _href=URL('loguri', args=user.username)))}}
+            {{pass}}
+        </ul>
+        {{if tabels:}}
+            <ul id="tables">
+                {{for tabel in tabels:}}
+                    {{=LI(A(tabel.tabel.replace('_',' ').title(), _href=URL('loguri', args=[request.args(0), tabel.tabel])))}}
+                {{pass}}
+            </ul>
+            {{if dates:}}
+                <ul id="dates">
+                    {{for date in dates:}}
+                        {{=LI(A(date.date.strftime('%d-%m-%Y'), _href=URL('loguri', args=[request.args(0), request.args(1), date.date])))}}
+                    {{pass}}
+                </ul>
+            {{pass}}
+        {{pass}}
+        {{if logs:}}
+            <table id="logs">
+                <thead>
+                    <th>User</th>
+                    <th>Zona</th>
+                    <th>Data</th>
+                    <th>IP</th>
+                    <th>{{=A('Logs', _href='javascript:;', _id='show_all')}}</th>
+                </thead>
+                <tbody>
+                    {{for log in logs:}}
+                        {{if log.activity.startswith("Editare"):}}
+                            {{  ok = True
+                                try:
+                                    new = dict()
+                                    old = dict()
+                                    clasa = dict()
+                                    
+                                    for x in re.search('.[^\[\]]*\[(.[^\[\]]*)\]',re.split("de la", log.activity)[0]).group(1).split(','):
+                                        new[x.split('=')[0].strip()] = x.split('=')[1].strip()
+                                    pass
+                                    for x in re.search('.[^\[\]]*\[(.[^\[\]]*)\]',re.split("de la", log.activity)[1]).group(1).split(','):
+                                        old[x.split('=')[0].strip()] = x.split('=')[1].strip()
+                                    pass
+                                    for i in new.keys():
+                                        if new[i] != old[i]:
+                                            clasa[i] = 'changed'
+                                        else:
+                                            clasa[i] = ''
+                                        pass
+                                    pass
+                                except:
+                                    ok = False
+                                pass
+                            }}
+                        {{else:}}
+                            {{ok = False}}
+                        {{pass}}
+                        <tr>
+                            {{=TD(log.username)}}
+                            {{=TD(log.tabel.replace('_',' ').title())}}
+                            {{=TD(log.date_added.strftime('%d-%m-%Y %H:%M'))}}
+                            {{=TD(log.ip)}}
+                            {{if not(ok):}}
+                                {{=TD(XML(log.activity[:log.activity.find('[')] +  \
+                                    '<span class="more">'+ log.activity[log.activity.find('['):len(log.activity)]+'</span>' + \
+                                    ' <a href="javascript:;" class ="see_more">[more]</a>'), _class='mw-350')}}
+                            {{else:}}
+                                <td class="mw-350">
+                                {{ text = log.activity[:log.activity.find('[')]
+                                    new_t = ""
+                                    old_t = ""  
+                                    for i in new.keys():
+                                        new_t += i + " = <em class=\"new_"+ clasa[i] + "\">" + new[i] + "</em>, "
+                                        old_t += i + " = <em class=\"old_"+ clasa[i] + "\">" + old[i] + "</em>, "
+                                    pass
+                                    text = text + "<em class=\"more\"> [ " + new_t + " ] de la [ " + old_t + " ]</em>" + \
+                                          "<a href=\"javascript:;\" class =\"see_more\">[more]</a>"
+                                }}
+                                {{=XML(text)}}
+                                </td>
+                            {{pass}}
+                        </tr>
+                    {{pass}}
+                </tbody>
+            </table>
+        {{pass}}
+    {{pass}}
+</div>

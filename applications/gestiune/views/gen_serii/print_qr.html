@@ -1,0 +1,48 @@
+<div class="pagina">
+    {{ for serie in imagini:}}
+        <div class="qr">
+            {{=SPAN("Tel: 0251.425.808", _class='sus')}}
+            {{=serie}}
+            {{=SPAN("www.rokortrading.ro", _class='jos')}}
+        </div>
+    {{pass}}
+</div>
+<div style="display:none">Pagina 22 Ultima Scoasa</div>
+<style type="text/css">
+    .pagina {
+        font-family: Arial;
+        width: 246mm;
+    }
+    .qr {
+        border: 1px dotted #aaa;
+        float: left;
+        height: 109px;
+        margin: -1px;
+        width: 109px;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    .qr span {
+        display: block;
+        font-size: 12px;
+        text-align: center;
+        width: 108px;
+        color: #CCC;
+        display: none;
+    }
+    .qr > * {
+        float: left;
+        /*margin-bottom: 6px;*/
+    }
+    .qr img {
+        margin-left: 4px;
+        margin-top: 4px;
+    }
+    .sus {
+        /*margin-top: 2px;*/
+    }
+    .jos {
+        clear: left;
+        font-size: 11px !important;
+    }
+</style>
